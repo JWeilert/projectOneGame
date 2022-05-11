@@ -6,6 +6,7 @@ html{
 }
 
 body{
+    text-align: center;
     background-color: aqua;
     width: 100%;
     height: 100%;
@@ -34,31 +35,31 @@ body{
 
 /* Player One Dice */
 
-#P1diceOne{
+#P1dice0{
     width: 19%;
     background-color: aliceblue;
     color:blue;
     margin: 3em;
 }
-#P1diceTwo{
+#P1dice1{
     width: 19%;
     background-color: aliceblue;
     color:blue;
     margin: 3em;
 }
-#P1diceThree{
+#P1dice2{
     width: 19%;
     background-color: aliceblue;
     color:blue;
     margin: 3em;
 }
-#P1diceFour{
+#P1dice3{
     width: 19%;
     background-color: aliceblue;
     color:blue;
     margin: 3em;
 }
-#P1diceFive{
+#P1dice4{
     width: 19%;
     background-color: aliceblue;
     color:blue;
@@ -67,31 +68,31 @@ body{
 
 /* Player One Dice */
 
-#P2diceOne{
+#P2dice0{
     width: 19%;
     background-color: aliceblue;
     color:blue;
     margin: 3em;
 }
-#P2diceTwo{
+#P2dice1{
     width: 19%;
     background-color: aliceblue;
     color:blue;
     margin: 3em;
 }
-#P2diceThree{
+#P2dice2{
     width: 19%;
     background-color: aliceblue;
     color:blue;
     margin: 3em;
 }
-#P2diceFour{
+#P2dice3{
     width: 19%;
     background-color: aliceblue;
     color:blue;
     margin: 3em;
 }
-#P2diceFive{
+#P2dice4{
     width: 19%;
     background-color: aliceblue;
     color:blue;
