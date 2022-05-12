@@ -4,16 +4,13 @@ let firstHalf = document.getElementById("firstHalf");
 
 let secondHalf = document.getElementById("firstHalf");
 
-let dice = document.getElementsByClassName("dice")[0];
+let dice = document.getElementsByClassName("dice");
 
-dice.addEventListener("click", function (event) {
-  event.stopPropagation();
-  console.log("test");
-  //   if ((getElementById = P1dice1)) {
-  //     console.log("YAY");
-  //     console.log(getElementById);
-  //   }
-});
+for (let i = 0; i < dice.length; i++) {
+  dice[i].addEventListener("click", function (event) {
+    console.log("test");
+  });
+}
 
 // Create 2 arrays array that can each hold 5 object dice
 
