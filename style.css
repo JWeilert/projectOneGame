@@ -16,85 +16,120 @@ body{
 /* Player Two side */
 
 #firstHalf{
+    text-align: center;
     background-color: rgb(12, 88, 88);
     width: 100%;
     height: 50%;
     display: flex;
-    justify-content: space-around;
+    align-items: center;
+    justify-content:space-around ;
 }
 
 /* Player One side */
 
 #secondHalf{
+    text-align: center;
     background-color: rgb(69, 131, 131);
     width: 100%;
     height: 50%;
     display: flex;
-    justify-content: space-around;
+    align-items: center;
+    justify-content:space-around ;
 }
 
 /* Player One Dice */
 
 #P1dice0{
-    width: 19%;
+    text-align: center;
+    width: 10%;
+    height: 25%;
     background-color: aliceblue;
     color:blue;
-    margin: 3em;
+    justify-content:space-around ;
+    align-items: center;
 }
 #P1dice1{
-    width: 19%;
+    text-align: center;
+    width: 10%;
+    height: 25%;
     background-color: aliceblue;
     color:blue;
-    margin: 3em;
+    justify-content:space-around ;
+    align-items: center;
 }
 #P1dice2{
-    width: 19%;
+    text-align: center;
+    width: 10%;
+    height: 25%;
     background-color: aliceblue;
     color:blue;
-    margin: 3em;
+    justify-content:space-around ;
+    align-items: center;
 }
 #P1dice3{
-    width: 19%;
+    text-align: center;
+    width: 10%;
+    height: 25%;
     background-color: aliceblue;
     color:blue;
-    margin: 3em;
+    justify-content:space-around ;
+    align-items: center;
 }
 #P1dice4{
-    width: 19%;
+    text-align: center;
+    width: 10%;
+    height: 25%;
     background-color: aliceblue;
     color:blue;
-    margin: 3em;
+    justify-content:space-around ;
+    align-items: center;
 }
 
 /* Player One Dice */
 
 #P2dice0{
-    width: 19%;
+    text-align: center;
+    width: 10%;
+    height: 25%;
     background-color: aliceblue;
     color:blue;
-    margin: 3em;
+    justify-content:space-around ;
+    align-items: center;
+
 }
 #P2dice1{
-    width: 19%;
+    text-align: center;
+    width: 10%;
+    height: 25%;
     background-color: aliceblue;
     color:blue;
-    margin: 3em;
+    justify-content:space-around ;
+    align-items: center;
 }
 #P2dice2{
-    width: 19%;
+    text-align: center;
+    width: 10%;
+    height: 25%;
     background-color: aliceblue;
     color:blue;
-    margin: 3em;
+    justify-content:space-around ;
+    align-items: center;
 }
 #P2dice3{
-    width: 19%;
+    text-align: center;
+    width: 10%;
+    height: 25%;
     background-color: aliceblue;
     color:blue;
-    margin: 3em;
+    justify-content:space-around ;
+    align-items: center;
 }
 #P2dice4{
-    width: 19%;
+    text-align: center;
+    width: 10%;
+    height: 25%;
     background-color: aliceblue;
     color:blue;
-    margin: 3em;
+    justify-content:space-around ;
+    align-items: center;
 }

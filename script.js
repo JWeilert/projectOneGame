@@ -1,14 +1,18 @@
+// Just making variables for future use
+
 let container = document.querySelector("body");
 
 let firstHalf = document.getElementById("firstHalf");
 
 let secondHalf = document.getElementById("firstHalf");
 
+// Add Event listener to dice. Also Selects ID
+
 let dice = document.getElementsByClassName("dice");
 
 for (let i = 0; i < dice.length; i++) {
   dice[i].addEventListener("click", function (event) {
-    console.log("test");
+    console.log(this.id);
   });
 }
 
@@ -37,7 +41,7 @@ function roll() {
   console.log("Rolled");
 }
 
-// Test to see everything run
+// Test to see numbers apear on dice
 
 function displayPlayerOne() {
   for (let i = 0; i < playerOneDice.length; i++) {
