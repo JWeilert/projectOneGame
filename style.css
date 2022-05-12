@@ -39,23 +39,12 @@ body{
 
 /* Player One Dice */
 
-#P1dice0{
-    text-align: center;
-    width: 10%;
-    height: 25%;
-    background-color: aliceblue;
-    color:blue;
-    justify-content:space-around ;
-    align-items: center;
-}
 #P1dice1{
     text-align: center;
     width: 10%;
     height: 25%;
     background-color: aliceblue;
     color:blue;
-    justify-content:space-around ;
-    align-items: center;
 }
 #P1dice2{
     text-align: center;
@@ -63,8 +52,6 @@ body{
     height: 25%;
     background-color: aliceblue;
     color:blue;
-    justify-content:space-around ;
-    align-items: center;
 }
 #P1dice3{
     text-align: center;
@@ -72,8 +59,6 @@ body{
     height: 25%;
     background-color: aliceblue;
     color:blue;
-    justify-content:space-around ;
-    align-items: center;
 }
 #P1dice4{
     text-align: center;
@@ -81,30 +66,23 @@ body{
     height: 25%;
     background-color: aliceblue;
     color:blue;
-    justify-content:space-around ;
-    align-items: center;
 }
-
-/* Player One Dice */
-
-#P2dice0{
+#P1dice5{
     text-align: center;
     width: 10%;
     height: 25%;
     background-color: aliceblue;
     color:blue;
-    justify-content:space-around ;
-    align-items: center;
-
 }
+
+/* Player One Dice */
+
 #P2dice1{
     text-align: center;
     width: 10%;
     height: 25%;
     background-color: aliceblue;
     color:blue;
-    justify-content:space-around ;
-    align-items: center;
 }
 #P2dice2{
     text-align: center;
@@ -112,8 +90,6 @@ body{
     height: 25%;
     background-color: aliceblue;
     color:blue;
-    justify-content:space-around ;
-    align-items: center;
 }
 #P2dice3{
     text-align: center;
@@ -121,8 +97,6 @@ body{
     height: 25%;
     background-color: aliceblue;
     color:blue;
-    justify-content:space-around ;
-    align-items: center;
 }
 #P2dice4{
     text-align: center;
@@ -130,6 +104,11 @@ body{
     height: 25%;
     background-color: aliceblue;
     color:blue;
-    justify-content:space-around ;
-    align-items: center;
+}
+#P2dice5{
+    text-align: center;
+    width: 10%;
+    height: 25%;
+    background-color: aliceblue;
+    color:blue;
 }
