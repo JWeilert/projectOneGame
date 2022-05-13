@@ -135,8 +135,22 @@ function roll() {
 
 function displayPlayerOne() {
   for (let i = 0; i < playerOneDice.length; i++) {
+    let diceRoll = playerOneDice[i].number;
     let diceContainer = document.getElementById(`P1dice${i + 1}`);
-    diceContainer.innerHTML = playerOneDice[i].number;
+    if (diceRoll == 1) {
+      diceContainer.innerHTML = '<img src="/assets/diceArrow.JPG" />';
+    } else if (diceRoll == 2) {
+      diceContainer.innerHTML = '<img src="/assets/diceSword.JPG" />';
+    } else if (diceRoll == 3) {
+      diceContainer.innerHTML = '<img src="/assets/diceShield.JPG" />';
+    } else if (diceRoll == 4) {
+      diceContainer.innerHTML = '<img src="/assets/diceHelmet.JPG" />';
+    } else if (diceRoll == 5) {
+      diceContainer.innerHTML = '<img src="/assets/diceHeart.JPG" />';
+    } else if (diceRoll == 6) {
+      diceContainer.innerHTML = '<img src="/assets/diceDeath.JPG" />';
+    } else diceContainer.innerHTML = "error";
+    // diceContainer.innerHTML = '<img src="/assets/diceArrow.JPG" />';
   }
 }
 
@@ -144,7 +158,21 @@ function displayPlayerTwo() {
   for (let i = 0; i < playerTwoDice.length; i++) {
     let diceRoll = playerTwoDice[i].number;
     let diceContainer = document.getElementById(`P2dice${i + 1}`);
-    diceContainer.innerHTML = playerTwoDice[i].number;
+    // diceContainer.innerHTML = playerTwoDice[i].number;
+    if (diceRoll == 1) {
+      diceContainer.innerHTML = '<img src="/assets/diceArrow.JPG" />';
+    } else if (diceRoll == 2) {
+      diceContainer.innerHTML = '<img src="/assets/diceSword.JPG" />';
+    } else if (diceRoll == 3) {
+      diceContainer.innerHTML = '<img src="/assets/diceShield.JPG" />';
+    } else if (diceRoll == 4) {
+      diceContainer.innerHTML = '<img src="/assets/diceHelmet.JPG" />';
+    } else if (diceRoll == 5) {
+      diceContainer.innerHTML = '<img src="/assets/diceHeart.JPG" />';
+    } else if (diceRoll == 6) {
+      diceContainer.innerHTML = '<img src="/assets/diceDeath.JPG" />';
+    } else diceContainer.innerHTML = "error";
+    // diceContainer.innerHTML = '<img src="/assets/diceArrow.JPG" />';
   }
 }
 

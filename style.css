@@ -13,8 +13,8 @@ body{
     border-radius: 2em;
     text-align: center;
     background-color: rgb(0, 0, 0);
-    width: 75%;
-    height: 90%;
+    width: 65%;
+    height: 80%;
     padding: 1em
 }
 
@@ -58,36 +58,36 @@ body{
 
 #P1dice1{
     text-align: center;
-    width: 10%;
-    height: 25%;
+    width: 15%;
+    height: 35%;
     background-color: aliceblue;
     color:blue;
 }
 #P1dice2{
     text-align: center;
-    width: 10%;
-    height: 25%;
+    width: 15%;
+    height: 35%;
     background-color: aliceblue;
     color:blue;
 }
 #P1dice3{
     text-align: center;
-    width: 10%;
-    height: 25%;
+    width: 15%;
+    height: 35%;
     background-color: aliceblue;
     color:blue;
 }
 #P1dice4{
     text-align: center;
-    width: 10%;
-    height: 25%;
+    width: 15%;
+    height: 35%;
     background-color: aliceblue;
     color:blue;
 }
 #P1dice5{
     text-align: center;
-    width: 10%;
-    height: 25%;
+    width: 15%;
+    height: 35%;
     background-color: aliceblue;
     color:blue;
 }
@@ -96,36 +96,42 @@ body{
 
 #P2dice1{
     text-align: center;
-    width: 10%;
-    height: 25%;
+    width: 15%;
+    height: 35%;
     background-color: aliceblue;
     color:blue;
 }
 #P2dice2{
     text-align: center;
-    width: 10%;
-    height: 25%;
+    width: 15%;
+    height: 35%;
     background-color: aliceblue;
     color:blue;
 }
 #P2dice3{
     text-align: center;
-    width: 10%;
-    height: 25%;
+    width: 15%;
+    height: 35%;
     background-color: aliceblue;
     color:blue;
 }
 #P2dice4{
     text-align: center;
-    width: 10%;
-    height: 25%;
+    width: 15%;
+    height: 35%;
     background-color: aliceblue;
     color:blue;
 }
 #P2dice5{
     text-align: center;
-    width: 10%;
-    height: 25%;
+    width: 15%;
+    height: 35%;
     background-color: aliceblue;
     color:blue;
+}
+
+img {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
 }
