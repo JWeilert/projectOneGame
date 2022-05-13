@@ -28,9 +28,9 @@ let secondHalf = document.getElementById("firstHalf");
 
 //Test for reRolling
 
-let topUi = document.getElementById("topUi");
+let rollButtonTop = document.getElementById("rollButtonTop");
 
-topUi.addEventListener("click", function (event) {
+rollButtonTop.addEventListener("click", function (event) {
   for (let i = 0; i < playerOneDice.length; i++) {
     if (playerOneDice[i].reRoll == true) {
       playerOneDice[i].number = roll();
@@ -39,9 +39,9 @@ topUi.addEventListener("click", function (event) {
   displayPlayerOne();
 });
 
-let bottomUi = document.getElementById("bottomUi");
+let rollButtonBottom = document.getElementById("rollButtonBottom");
 
-bottomUi.addEventListener("click", function (event) {
+rollButtonBottom.addEventListener("click", function (event) {
   for (let i = 0; i < playerTwoDice.length; i++) {
     if (playerTwoDice[i].reRoll == true) {
       playerTwoDice[i].number = roll();
@@ -159,6 +159,7 @@ function displayPlayerTwo() {
     let diceRoll = playerTwoDice[i].number;
     let diceContainer = document.getElementById(`P2dice${i + 1}`);
     // diceContainer.innerHTML = playerTwoDice[i].number;
+
     if (diceRoll == 1) {
       diceContainer.innerHTML = '<img src="/assets/diceArrow.JPG" />';
     } else if (diceRoll == 2) {
