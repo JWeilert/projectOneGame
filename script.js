@@ -119,9 +119,9 @@ function reRollValue(diceID) {
 }
 
 function display(diceSelected, selector) {
-  if (diceSelected.reRoll == false) {
-    selector.style.color = "red";
-  } else selector.style.color = "blue";
+  if (diceSelected.reRoll == true) {
+    selector.classList.add("reRoll");
+  } else selector.classList.remove("reRoll");
 }
 
 // Creates random number 1-6
