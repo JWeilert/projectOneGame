@@ -1,3 +1,7 @@
+//Sets volume of music
+document.getElementById("backgroundMusic").volume = 0.4;
+document.getElementById("backgroundNoise").volume = 0.3;
+
 var playerOneTurn = true;
 
 // Create 2 arrays array that can each hold 5 object dice
