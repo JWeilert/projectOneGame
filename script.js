@@ -1,8 +1,14 @@
 var started = true;
 
 //Sets volume of music
-document.getElementById("backgroundMusic").volume = 0.4;
-document.getElementById("backgroundNoise").volume = 0.3;
+let backgroundMusic = document.getElementById("backgroundMusic");
+let backgroundSound = document.getElementById("backgroundNoise");
+backgroundMusic.play();
+backgroundSound.play();
+
+backgroundMusic.volume = 0.4;
+backgroundSound.volume = 0.3;
+
 var oneDice = new Audio("assets/Audio/oneDice.mp3");
 var twoDice = new Audio("assets/Audio/twoDice.mp3");
 var multiDice = new Audio("assets/Audio/multiDice.mp3");
