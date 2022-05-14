@@ -1,6 +1,11 @@
+var started = true;
+
 //Sets volume of music
 document.getElementById("backgroundMusic").volume = 0.4;
 document.getElementById("backgroundNoise").volume = 0.3;
+var oneDice = new Audio("assets/Audio/oneDice.mp3");
+var twoDice = new Audio("assets/Audio/twoDice.mp3");
+var multiDice = new Audio("assets/Audio/multiDice.mp3");
 
 var playerOneTurn = true;
 
@@ -30,29 +35,51 @@ let firstHalf = document.getElementById("firstHalf");
 
 let secondHalf = document.getElementById("firstHalf");
 
-//Test for reRolling
+//Rolling Button
 
 let rollButtonTop = document.getElementById("rollButtonTop");
 
 rollButtonTop.addEventListener("click", function (event) {
+  start = false;
+  let diceRolled = 0;
   for (let i = 0; i < playerOneDice.length; i++) {
     if (playerOneDice[i].reRoll == true) {
+      diceRolled += 1;
       playerOneDice[i].number = roll();
-    } else console.log("Not reRolled");
+    } else console.log("No reroll");
   }
   displayPlayerOne();
+  diceRolledAudio(diceRolled);
 });
 
 let rollButtonBottom = document.getElementById("rollButtonBottom");
 
 rollButtonBottom.addEventListener("click", function (event) {
+  let diceRolled = 0;
+  started = false;
   for (let i = 0; i < playerTwoDice.length; i++) {
     if (playerTwoDice[i].reRoll == true) {
+      diceRolled += 1;
       playerTwoDice[i].number = roll();
     } else console.log("Not reRolled");
   }
   displayPlayerTwo();
+  diceRolledAudio(diceRolled);
 });
+
+function diceRolledAudio(diceRolled) {
+  //Audio linked to rollButton()
+  if (diceRolled > 2) {
+    multiDice.currentTime = 0;
+    multiDice.play();
+  } else if (diceRolled > 1) {
+    twoDice.currentTime = 0;
+    twoDice.play();
+  } else if (diceRolled === 1) {
+    oneDice.currentTime = 0;
+    oneDice.play();
+  } else console.log("No Audio");
+}
 
 // Add Event listener to dice. Also Selects ID
 
@@ -141,6 +168,14 @@ function displayPlayerOne() {
   for (let i = 0; i < playerOneDice.length; i++) {
     let diceRoll = playerOneDice[i].number;
     let diceContainer = document.getElementById(`P1dice${i + 1}`);
+    if (started === true) {
+      diceContainer.innerHTML = '<img src="/assets/diceDeath.JPG" />';
+      diceContainer.innerHTML = '<img src="/assets/diceHeart.JPG" />';
+      diceContainer.innerHTML = '<img src="/assets/diceHelmet.JPG" />';
+      diceContainer.innerHTML = '<img src="/assets/diceShield.JPG" />';
+      diceContainer.innerHTML = '<img src="/assets/diceSword.JPG" />';
+      diceContainer.innerHTML = '<img src="/assets/diceArrow.JPG" />';
+    }
     if (diceRoll == 1) {
       diceContainer.innerHTML = '<img src="/assets/diceArrow.JPG" />';
     } else if (diceRoll == 2) {
@@ -154,7 +189,6 @@ function displayPlayerOne() {
     } else if (diceRoll == 6) {
       diceContainer.innerHTML = '<img src="/assets/diceDeath.JPG" />';
     } else diceContainer.innerHTML = "error";
-    // diceContainer.innerHTML = '<img src="/assets/diceArrow.JPG" />';
   }
 }
 
@@ -162,8 +196,14 @@ function displayPlayerTwo() {
   for (let i = 0; i < playerTwoDice.length; i++) {
     let diceRoll = playerTwoDice[i].number;
     let diceContainer = document.getElementById(`P2dice${i + 1}`);
-    // diceContainer.innerHTML = playerTwoDice[i].number;
-
+    if (started === true) {
+      diceContainer.innerHTML = '<img src="/assets/diceDeath.JPG" />';
+      diceContainer.innerHTML = '<img src="/assets/diceHeart.JPG" />';
+      diceContainer.innerHTML = '<img src="/assets/diceHelmet.JPG" />';
+      diceContainer.innerHTML = '<img src="/assets/diceShield.JPG" />';
+      diceContainer.innerHTML = '<img src="/assets/diceSword.JPG" />';
+      diceContainer.innerHTML = '<img src="/assets/diceArrow.JPG" />';
+    }
     if (diceRoll == 1) {
       diceContainer.innerHTML = '<img src="/assets/diceArrow.JPG" />';
     } else if (diceRoll == 2) {
@@ -177,7 +217,6 @@ function displayPlayerTwo() {
     } else if (diceRoll == 6) {
       diceContainer.innerHTML = '<img src="/assets/diceDeath.JPG" />';
     } else diceContainer.innerHTML = "error";
-    // diceContainer.innerHTML = '<img src="/assets/diceArrow.JPG" />';
   }
 }
 
