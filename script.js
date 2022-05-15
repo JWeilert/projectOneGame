@@ -1,23 +1,24 @@
 var started = true;
+var playerOneTurn = true;
+var roundOver = false;
 
-var playerOneTurn = false;
+var playerOneHealth = 15;
+var playerTwoHealth = 15;
+
+var rollCheck = 0;
 var playerOneRolls = 0;
 var playerTwoRolls = 0;
 
 //Sets volume of music
 document.getElementById("backgroundMusic").volume = 0.2;
-document.getElementById("backgroundNoise").volume = 0.1;
-
-// backgroundMusic.play();
-// backgroundSound.play();
-
-// backgroundMusic.volume = 0.4;
-// backgroundSound.volume = 0.3;
+document.getElementById("backgroundNoise").volume = 0.2;
 
 var oneDice = new Audio("assets/Audio/oneDice.mp3");
 var twoDice = new Audio("assets/Audio/twoDice.mp3");
 var multiDice = new Audio("assets/Audio/multiDice.mp3");
 
+var buttonPress = new Audio("assets/Audio/buttonPress.mp3");
+var buttonLock = new Audio("assets/Audio/buttonLock.mp3");
 // Create 2 arrays array that can each hold 5 object dice
 
 let playerOneDice = [
@@ -46,13 +47,29 @@ let firstHalf = document.getElementById("firstHalf");
 
 let secondHalf = document.getElementById("firstHalf");
 
+// Add Event listener to dice. Also Selects ID
+
+let dice = document.getElementsByClassName("dice");
+
+for (let i = 0; i < dice.length; i++) {
+  dice[i].addEventListener("click", function () {
+    if (roundOver == false) {
+      console.log(roundOver);
+      let diceID = this.id;
+      reRollValue(diceID);
+    }
+  });
+}
+
 //Rolling Button
 
 let rollButtonTop = document.getElementById("rollButtonTop");
 
 rollButtonTop.addEventListener("click", function (event) {
-  if (playerOneTurn == true && playerOneRolls < 3) {
+  if (playerOneTurn == true && playerOneRolls < 3 && rollCheck == 0) {
+    rollCheck += 1;
     playerOneRolls += 1;
+    console.log(playerOneRolls);
     let diceRolled = 0;
     //audio and reReoll check
     for (let i = 0; i < playerOneDice.length; i++) {
@@ -63,24 +80,26 @@ rollButtonTop.addEventListener("click", function (event) {
         if (playerOneRolls >= 3) {
           console.log(playerOneRolls);
           for (let i = 0; i < playerOneDice.length; i++) {
-            playerOneDice[i].reRoll == false;
+            playerOneDice[i].reRoll = false;
             let id = `P1dice${i + 1}`;
             let selector = document.getElementById(id);
             selector.classList.remove("reRoll");
+            playerOneTurn = false;
+            rollCheck = 0;
           }
         }
       }
       displayPlayerOne();
       diceRolledAudio(diceRolled);
-      playerOneTurn = false;
     }
-  } else alert("Not your turn");
+  } else buttonLock.play();
 });
 
 let rollButtonBottom = document.getElementById("rollButtonBottom");
 
 rollButtonBottom.addEventListener("click", function (event) {
-  if (playerOneTurn == false && playerTwoRolls < 3) {
+  if (playerOneTurn == false && playerTwoRolls < 3 && rollCheck == 0) {
+    rollCheck += 1;
     playerTwoRolls += 1;
     let diceRolled = 0;
     //audio and reReoll check
@@ -92,19 +111,24 @@ rollButtonBottom.addEventListener("click", function (event) {
         if (playerTwoRolls >= 3) {
           console.log(playerTwoRolls);
           for (let i = 0; i < playerTwoDice.length; i++) {
-            playerTwoDice[i].reRoll == false;
+            playerTwoDice[i].reRoll = false;
+            console.log(playerTwoDice[i].reRoll);
             let id = `P2dice${i + 1}`;
             let selector = document.getElementById(id);
             selector.classList.remove("reRoll");
+            playerOneTurn = true;
+            console.log(playerOneTurn);
+            rollCheck = 0;
           }
         }
       }
       displayPlayerTwo();
       diceRolledAudio(diceRolled);
-      playerOneTurn = true;
     }
-  } else alert("Not your turn");
+  } else buttonLock.play();
 });
+
+//Audio for rolling
 
 function diceRolledAudio(diceRolled) {
   //Audio linked to rollButton()
@@ -120,16 +144,38 @@ function diceRolledAudio(diceRolled) {
   } else console.log("No Audio");
 }
 
-// Add Event listener to dice. Also Selects ID
+//Finish button
+let finishButtonTop = document.getElementById("finishButtonTop");
+let finishButtonBottom = document.getElementById("finishButtonBottom");
 
-let dice = document.getElementsByClassName("dice");
+finishButtonTop.addEventListener("click", function (event) {
+  console.log(roundOver);
+  if (playerOneTurn == true && roundOver == false) {
+    rollCheck = 0;
+    playerOneTurn = false;
+    for (let i = 0; i < playerOneDice.length; i++) {
+      if (playerOneDice[i].reRoll == true) {
+        let id = document.getElementById(`P1dice${[i + 1]}`);
+        id.innerHTML = ``;
+      }
+    }
+    buttonPress.play();
+  } else buttonLock.play();
+});
 
-for (let i = 0; i < dice.length; i++) {
-  dice[i].addEventListener("click", function () {
-    let diceID = this.id;
-    reRollValue(diceID);
-  });
-}
+finishButtonBottom.addEventListener("click", function (event) {
+  if (playerOneTurn == false && roundOver == false) {
+    rollCheck = 0;
+    playerOneTurn = true;
+    for (let i = 0; i < playerTwoDice.length; i++) {
+      if (playerTwoDice[i].reRoll == true) {
+        let id = document.getElementById(`P2dice${[i + 1]}`);
+        id.innerHTML = ``;
+      }
+    }
+    buttonPress.play();
+  } else buttonLock.play();
+});
 
 // Changes value of ReRoll
 
@@ -167,7 +213,7 @@ function reRollValue(diceID) {
       let diceSelected = playerOneDice[5];
       display(diceSelected, selector);
     }
-  } else {
+  } else if (playerOneTurn == false) {
     if (diceID === "P2dice1") {
       playerTwoDice[0].reRoll = !playerTwoDice[0].reRoll;
       console.log(playerTwoDice[0]);
