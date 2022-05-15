@@ -106,6 +106,13 @@ body{
     /* background-color: aliceblue; */
     color:blue;
 }
+#P1dice6{
+    text-align: center;
+    width: 15%;
+    height: 35%;
+    /* background-color: aliceblue; */
+    color:blue;
+}
 
 /* Player One Dice */
 
@@ -138,6 +145,13 @@ body{
     color:blue;
 }
 #P2dice5{
+    text-align: center;
+    width: 15%;
+    height: 35%;
+    /* background-color: aliceblue; */
+    color:blue;
+}
+#P2dice6{
     text-align: center;
     width: 15%;
     height: 35%;
