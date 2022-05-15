@@ -78,7 +78,6 @@ rollButtonTop.addEventListener("click", function (event) {
         playerOneDice[i].number = roll();
         //Needs touched up
         if (playerOneRolls >= 3) {
-          console.log(playerOneRolls);
           for (let i = 0; i < playerOneDice.length; i++) {
             playerOneDice[i].reRoll = false;
             let id = `P1dice${i + 1}`;
@@ -91,6 +90,7 @@ rollButtonTop.addEventListener("click", function (event) {
       }
       displayPlayerOne();
       diceRolledAudio(diceRolled);
+      roundOverCheck();
     }
   } else buttonLock.play();
 });
@@ -101,6 +101,7 @@ rollButtonBottom.addEventListener("click", function (event) {
   if (playerOneTurn == false && playerTwoRolls < 3 && rollCheck == 0) {
     rollCheck += 1;
     playerTwoRolls += 1;
+    console.log(playerTwoRolls);
     let diceRolled = 0;
     //audio and reReoll check
     for (let i = 0; i < playerTwoDice.length; i++) {
@@ -109,21 +110,19 @@ rollButtonBottom.addEventListener("click", function (event) {
         playerTwoDice[i].number = roll();
         //Needs touched up
         if (playerTwoRolls >= 3) {
-          console.log(playerTwoRolls);
           for (let i = 0; i < playerTwoDice.length; i++) {
             playerTwoDice[i].reRoll = false;
-            console.log(playerTwoDice[i].reRoll);
             let id = `P2dice${i + 1}`;
             let selector = document.getElementById(id);
             selector.classList.remove("reRoll");
             playerOneTurn = true;
-            console.log(playerOneTurn);
             rollCheck = 0;
           }
         }
       }
       displayPlayerTwo();
       diceRolledAudio(diceRolled);
+      roundOverCheck();
     }
   } else buttonLock.play();
 });
@@ -301,4 +300,11 @@ function displayPlayerTwo() {
       diceContainer.innerHTML = '<img src="/assets/diceDeath.JPG" />';
     } else diceContainer.innerHTML = "error";
   }
+}
+
+function roundOverCheck() {
+  if (playerOneRolls == 3 && playerTwoRolls == 3) {
+    console.log("RoundOver Check");
+    roundOver = true;
+  } else return;
 }
