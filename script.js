@@ -31,37 +31,37 @@ health[1].innerHTML = playerTwoHealth;
 document.getElementById("backgroundMusic").volume = 0.1;
 document.getElementById("backgroundNoise").volume = 0.1;
 
-var oneDice = new Audio("assets/Audio/oneDice.mp3");
+const oneDice = new Audio("assets/Audio/oneDice.mp3");
 oneDice.volume = 0.2;
-var twoDice = new Audio("assets/Audio/twoDice.mp3");
+const twoDice = new Audio("assets/Audio/twoDice.mp3");
 twoDice.volume = 0.2;
-var multiDice = new Audio("assets/Audio/multiDice.mp3");
+const multiDice = new Audio("assets/Audio/multiDice.mp3");
 multiDice.volume = 0.2;
 
-var buttonPress = new Audio("assets/Audio/buttonPress.mp3");
+const buttonPress = new Audio("assets/Audio/buttonPress.mp3");
 buttonPress.volume = 0.2;
-var buttonLock = new Audio("assets/Audio/buttonLock.mp3");
+const buttonLock = new Audio("assets/Audio/buttonLock.mp3");
 buttonLock.volume = 0.2;
-var diceClick = new Audio("assets/Audio/diceClick.mp3");
+const diceClick = new Audio("assets/Audio/diceClick.mp3");
 diceClick.volume = 0.2;
 
-var hornStart = new Audio("assets/Audio/hornStart.mp3");
+const hornStart = new Audio("assets/Audio/hornStart.mp3");
 hornStart.volume = 0.1;
-var swordClash = new Audio("assets/Audio/swordClash.mp3");
+const swordClash = new Audio("assets/Audio/swordClash.mp3");
 swordClash.volume = 0.2;
-var arrowClash = new Audio("assets/Audio/arrowClash.mp3");
+const arrowClash = new Audio("assets/Audio/arrowClash.mp3");
 arrowClash.volume = 0.2;
-var heartPop = new Audio("assets/Audio/heartPop.mp3");
+const heartPop = new Audio("assets/Audio/heartPop.mp3");
 heartPop.volume = 0.2;
-var damageSound = new Audio("assets/Audio/damageSound.mp3");
+const damageSound = new Audio("assets/Audio/damageSound.mp3");
 damageSound.volume = 0.2;
-var heartBeat = new Audio("assets/Audio/heartBeat.mp3");
+const heartBeat = new Audio("assets/Audio/heartBeat.mp3");
 heartBeat.volume = 0.2;
-var deathSlash = new Audio("assets/Audio/deathSlash.mp3");
+const deathSlash = new Audio("assets/Audio/deathSlash.mp3");
 deathSlash.volume = 0.2;
 // Create 2 arrays array that can each hold 5 object dice
 
-let playerOneDice = [
+const playerOneDice = [
   { number: roll(), reRoll: true },
   { number: roll(), reRoll: true },
   { number: roll(), reRoll: true },
@@ -70,7 +70,7 @@ let playerOneDice = [
   { number: roll(), reRoll: true },
 ];
 
-let playerTwoDice = [
+const playerTwoDice = [
   { number: roll(), reRoll: true },
   { number: roll(), reRoll: true },
   { number: roll(), reRoll: true },
@@ -81,11 +81,15 @@ let playerTwoDice = [
 
 // Just making variables for future use
 
-let container = document.querySelector("body");
+const container = document.querySelector("body");
 
-let firstHalf = document.getElementById("firstHalf");
+const firstHalf = document.getElementById("firstHalf");
 
-let secondHalf = document.getElementById("firstHalf");
+const secondHalf = document.getElementById("firstHalf");
+
+const topUi = document.getElementById("topUi");
+
+const bottomUi = document.getElementById("bottomUi");
 
 // Add Event listener to dice. Also Selects ID
 
@@ -142,6 +146,7 @@ rollButtonTop.addEventListener("click", function (event) {
             i++;
           }
           playerOneTurn = false;
+          opacityCheck();
         }
       }
     }
@@ -192,6 +197,7 @@ rollButtonBottom.addEventListener("click", function (event) {
             i++;
           }
           playerOneTurn = true;
+          opacityCheck();
         }
       }
     }
@@ -234,6 +240,7 @@ finishButtonTop.addEventListener("click", function (event) {
       if (playerOneDice[i].reRoll == true) {
         let id = document.getElementById(`P1dice${[i + 1]}`);
         id.innerHTML = ``;
+        opacityCheck();
       }
     }
     buttonPress.play();
@@ -249,6 +256,7 @@ finishButtonBottom.addEventListener("click", function (event) {
       if (playerTwoDice[i].reRoll == true) {
         let id = document.getElementById(`P2dice${[i + 1]}`);
         id.innerHTML = ``;
+        opacityCheck();
       }
     }
     buttonPress.play();
@@ -420,6 +428,10 @@ function displayPlayerTwo() {
 
 function roundOverCheck() {
   if (playerOneRolls == 3 && playerTwoRolls == 3) {
+    firstHalf.style.opacity = 1;
+    secondHalf.style.opacity = 1;
+    topUi.style.opacity = 1;
+    bottomUi.style.opacity = 1;
     console.log("RoundOver Check");
     roundOver = true;
     roundOverDisplay();
@@ -449,6 +461,9 @@ async function roundOverDisplay() {
     deathOne(diceNumber1, diceNumber2, id1, id2);
     deathTwo(diceNumber1, diceNumber2, id1, id2);
   }
+  await sleep(16000);
+  console.log("Now");
+  restart();
 }
 
 function healthMath() {
@@ -668,11 +683,10 @@ async function deathOne(diceNumber1, diceNumber2, id1, id2) {
     id1.classList.add("stabUp");
     await sleep(450);
     id1.innerHTML = "<p></p>";
-    health[0].innerHTML = playerOneHealth;
-    console.log(id1);
   }
   if (id1 == P1dice1) {
-    playerOneHealth -= P1death;
+    playerOneHealth -= P1death * 2;
+    health[0].innerHTML = playerOneHealth;
   }
 }
 
@@ -682,13 +696,12 @@ async function deathTwo(diceNumber1, diceNumber2, id1, id2) {
     console.log("test");
     deathSlash.play();
     id2.classList.add("stabDown");
-    console.log(id2);
     await sleep(450);
     id2.innerHTML = "<p></p>";
-    health[1].innerHTML = playerTwoHealth;
   }
   if (id1 == P1dice1) {
-    playerTwoHealth -= P2death;
+    playerTwoHealth -= P2death * 2;
+    health[1].innerHTML = playerTwoHealth;
   }
 }
 
@@ -696,4 +709,47 @@ function sleep(time) {
   return new Promise((resolve) => {
     setInterval(resolve, time);
   });
+}
+
+function restart() {
+  playerOneRolls = 0;
+  playerTwoRolls = 0;
+  rollCheck = 0;
+  roundOver = false;
+  opacityCheck();
+  for (let i = 0; i < playerOneDice.length; i++) {
+    playerOneDice[i].reRoll = true;
+    playerTwoDice[i].reRoll = true;
+    playerOneDice[i].number = roll();
+    playerTwoDice[i].number = roll();
+    console.log(playerOneDice, playerTwoDice);
+  }
+  for (let i = 0; i < playerOneDice.length; i++) {
+    console.log(dice[i].id);
+    let id1 = document.getElementById(`P1dice${i + 1}`);
+    let id2 = document.getElementById(`P2dice${i + 1}`);
+    id1.classList.remove("moveDown");
+    id1.classList.remove("heart");
+    id1.classList.remove("stabUp");
+    id2.classList.remove("moveUp");
+    id2.classList.remove("heart");
+    id2.classList.remove("stabDown");
+    id1.classList.add("reRoll");
+    id2.classList.add("reRoll");
+    console.log(id1);
+  }
+}
+
+function opacityCheck() {
+  if (playerOneTurn == false) {
+    firstHalf.style.opacity = 0.5;
+    topUi.style.opacity = 0.5;
+    secondHalf.style.opacity = 1;
+    bottomUi.style.opacity = 1;
+  } else {
+    secondHalf.style.opacity = 0.5;
+    bottomUi.style.opacity = 0.5;
+    topUi.style.opacity = 1;
+    firstHalf.style.opacity = 1;
+  }
 }
