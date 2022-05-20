@@ -54,7 +54,7 @@ arrowClash.volume = 0.2;
 const heartPop = new Audio("assets/Audio/heartPop.mp3");
 heartPop.volume = 0.2;
 const damageSound = new Audio("assets/Audio/damageSound.mp3");
-damageSound.volume = 0.2;
+damageSound.volume = 0.4;
 const heartBeat = new Audio("assets/Audio/heartBeat.mp3");
 heartBeat.volume = 0.2;
 const deathSlash = new Audio("assets/Audio/deathSlash.mp3");
@@ -783,13 +783,13 @@ function restart() {
 
 function opacityCheck() {
   if (playerOneTurn == false) {
-    firstHalf.style.opacity = 0.5;
-    topUi.style.opacity = 0.5;
+    firstHalf.style.opacity = 0.3;
+    topUi.style.opacity = 0.3;
     secondHalf.style.opacity = 1;
     bottomUi.style.opacity = 1;
   } else {
-    secondHalf.style.opacity = 0.5;
-    bottomUi.style.opacity = 0.5;
+    secondHalf.style.opacity = 0.3;
+    bottomUi.style.opacity = 0.3;
     topUi.style.opacity = 1;
     firstHalf.style.opacity = 1;
   }
@@ -833,31 +833,31 @@ async function preload() {
   for (let i = 0; i < playerTwoDice.length; i++) {
     let diceContainer1 = document.getElementById(`P2dice${i + 1}`);
     diceContainer1.innerHTML = '<img src="/assets/diceArrow.JPG" />';
-    await sleep(20);
+    await sleep(15);
     diceContainer1.innerHTML = '<img src="/assets/diceSword.JPG" />';
-    await sleep(20);
+    await sleep(15);
     diceContainer1.innerHTML = '<img src="/assets/diceShield.JPG" />';
-    await sleep(20);
+    await sleep(15);
     diceContainer1.innerHTML = '<img src="/assets/diceHelmet.JPG" />';
-    await sleep(20);
+    await sleep(15);
     diceContainer1.innerHTML = '<img src="/assets/diceHeart.JPG" />';
-    await sleep(20);
+    await sleep(15);
     diceContainer1.innerHTML = '<img src="/assets/diceDeath.JPG" />';
-    await sleep(20);
+    await sleep(15);
     diceContainer1.innerHTML = "";
     let diceContainer2 = document.getElementById(`P1dice${i + 1}`);
     diceContainer2.innerHTML = '<img src="/assets/diceArrow.JPG" />';
-    await sleep(20);
+    await sleep(15);
     diceContainer2.innerHTML = '<img src="/assets/diceSword.JPG" />';
-    await sleep(20);
+    await sleep(15);
     diceContainer2.innerHTML = '<img src="/assets/diceShield.JPG" />';
-    await sleep(20);
+    await sleep(15);
     diceContainer2.innerHTML = '<img src="/assets/diceHelmet.JPG" />';
-    await sleep(20);
+    await sleep(15);
     diceContainer2.innerHTML = '<img src="/assets/diceHeart.JPG" />';
-    await sleep(20);
+    await sleep(15);
     diceContainer2.innerHTML = '<img src="/assets/diceDeath.JPG" />';
-    await sleep(20);
+    await sleep(15);
     diceContainer2.innerHTML = "";
   }
 }
