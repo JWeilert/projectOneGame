@@ -403,11 +403,12 @@ function roll() {
 
 // Displays Dice
 
-function displayPlayerOne() {
+async function displayPlayerOne() {
   console.log("displayPlayerOne()");
   for (let i = 0; i < playerOneDice.length; i++) {
     let diceRoll = playerOneDice[i].number;
     let diceContainer = document.getElementById(`P1dice${i + 1}`);
+    diceContainer.style.visibility = "hidden";
     if (diceRoll == 1) {
       diceContainer.innerHTML = '<img src="/assets/diceArrow.JPG" />';
     } else if (diceRoll == 2) {
@@ -422,13 +423,19 @@ function displayPlayerOne() {
       diceContainer.innerHTML = '<img src="/assets/diceDeath.JPG" />';
     } else diceContainer.innerHTML = "error";
   }
+  await sleep(100);
+  for (let i = 0; i < playerOneDice.length; i++) {
+    let diceContainer = document.getElementById(`P1dice${i + 1}`);
+    diceContainer.style.visibility = "visible";
+  }
 }
 
-function displayPlayerTwo() {
+async function displayPlayerTwo() {
   console.log("displayPlayerTwo()");
   for (let i = 0; i < playerTwoDice.length; i++) {
     let diceRoll = playerTwoDice[i].number;
     let diceContainer = document.getElementById(`P2dice${i + 1}`);
+    diceContainer.style.visibility = "hidden";
     if (diceRoll == 1) {
       diceContainer.innerHTML = '<img src="/assets/diceArrow.JPG" />';
     } else if (diceRoll == 2) {
@@ -442,6 +449,11 @@ function displayPlayerTwo() {
     } else if (diceRoll == 6) {
       diceContainer.innerHTML = '<img src="/assets/diceDeath.JPG" />';
     } else diceContainer.innerHTML = "error";
+  }
+  await sleep(100);
+  for (let i = 0; i < playerTwoDice.length; i++) {
+    let diceContainer = document.getElementById(`P2dice${i + 1}`);
+    diceContainer.style.visibility = "visible";
   }
 }
 //Makes round over
@@ -763,10 +775,8 @@ function restart() {
     playerTwoDice[i].reRoll = true;
     playerOneDice[i].number = roll();
     playerTwoDice[i].number = roll();
-    console.log(playerOneDice, playerTwoDice);
   }
   for (let i = 0; i < playerOneDice.length; i++) {
-    console.log(dice[i].id);
     let id1 = document.getElementById(`P1dice${i + 1}`);
     let id2 = document.getElementById(`P2dice${i + 1}`);
     id1.classList.remove("moveDown");
@@ -777,7 +787,6 @@ function restart() {
     id2.classList.remove("stabDown");
     id1.classList.add("reRoll");
     id2.classList.add("reRoll");
-    console.log(id1);
   }
 }
 
@@ -861,5 +870,3 @@ async function preload() {
     diceContainer2.innerHTML = "";
   }
 }
-
-preload();
