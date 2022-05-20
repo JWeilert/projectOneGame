@@ -12,8 +12,8 @@ var P1death = 0;
 var P2death = 0;
 
 var started = true;
-var playerOneTurn = true;
-var roundOver = false;
+var playerOneTurn = false;
+var roundOver = true;
 
 var playerOneHealth = 10;
 var playerTwoHealth = 10;
@@ -59,6 +59,8 @@ const heartBeat = new Audio("assets/Audio/heartBeat.mp3");
 heartBeat.volume = 0.2;
 const deathSlash = new Audio("assets/Audio/deathSlash.mp3");
 deathSlash.volume = 0.2;
+const startGame = new Audio("assets/Audio/startGame.mp3");
+startGame.volume = 0.2;
 // Create 2 arrays array that can each hold 5 object dice
 
 const playerOneDice = [
@@ -90,6 +92,24 @@ const secondHalf = document.getElementById("firstHalf");
 const topUi = document.getElementById("topUi");
 
 const bottomUi = document.getElementById("bottomUi");
+
+// Game Start
+
+let start = document.getElementById("start");
+start.addEventListener("click", async function () {
+  start.classList.add("start");
+  startGame.play();
+  await sleep(500);
+  start.parentNode.removeChild(start);
+  roundOver = false;
+  document.getElementById("backgroundMusic").play();
+  document.getElementById("backgroundNoise").play();
+  let playersTurn = roll();
+  if (playersTurn >= 3) {
+    playerOneTurn = true;
+  } else playerOneTurn = false;
+  opacityCheck();
+});
 
 // Add Event listener to dice. Also Selects ID
 
@@ -539,6 +559,7 @@ async function arrowsOne(diceNumber1, diceNumber2, id1, id2) {
     playerTwoHealth = playerTwoHealth - damage;
   }
 }
+
 async function helmetTwo(diceNumber1, diceNumber2, id1, id2) {
   if (diceNumber2 == 4) {
     arrowClash.play();
@@ -560,13 +581,11 @@ async function arrowsTwo(diceNumber1, diceNumber2, id1, id2) {
     await sleep(2450);
     id2.innerHTML = "<p></p>";
     if (P2arrow > P1helmet) {
-      console.log("test");
       health[0].innerHTML = playerOneHealth;
       damageSound.play();
     }
   }
   if (P2arrow > P1helmet && id1 == P1dice1) {
-    console.log("test");
     let damage = P2arrow - P1helmet;
     playerOneHealth = playerOneHealth - damage;
   }
@@ -712,6 +731,9 @@ function sleep(time) {
 }
 
 function restart() {
+  if (playerOneHealth <= 0 || playerTwoHealth <= 0) {
+    endGame();
+  }
   playerOneRolls = 0;
   playerTwoRolls = 0;
   rollCheck = 0;
@@ -753,3 +775,25 @@ function opacityCheck() {
     firstHalf.style.opacity = 1;
   }
 }
+
+function endGame() {
+  if (playerOneHealth <= 0 && playerTwoDice <= 0) {
+    alert("There are no winners in war");
+    playerOneHealth = 10;
+    playerTwoHealth = 10;
+  } else if (playerOneHealth <= 0) {
+    alert("Player two wins");
+    playerOneHealth = 10;
+    playerTwoHealth = 10;
+  } else if (playerTwoHelth <= 0) {
+    alert("Player one wins");
+    playerOneHealth = 10;
+    playerTwoHealth = 10;
+  }
+}
+
+secondHalf.style.opacity = 0.5;
+bottomUi.style.opacity = 0.5;
+firstHalf.style.opacity = 0.5;
+topUi.style.opacity = 0.5;
+startButton.style.opacity = 1;

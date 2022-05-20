@@ -10,6 +10,7 @@ html{
 }
 
 body{
+    position: relative;
     border-radius: 2em;
     text-align: center;
     background-color: rgb(0, 0, 0);
@@ -17,6 +18,23 @@ body{
     height: 80%;
     padding: 1em
 }
+/* Start Button */
+
+#start{
+    display: flex;
+    position: absolute;
+    height: 50%;
+    width: 50%;
+    top:25%;
+    left:25%;
+    align-items: center;
+}
+#start #startButton{
+    width:100%;
+    z-index: 2;
+}
+
+/*  */
 
 #topUi{
     border-radius: 2em 2em 0em 0em;
@@ -204,6 +222,10 @@ body{
     animation: stabDown .5s;
     animation-iteration-count: 1;
 }
+.start{
+    animation: startGame .5s;
+    animation-iteration-count: 1;
+}
 
 @keyframes shake {
     0% { transform: translate(1px, 1px) rotate(1deg); }
@@ -279,4 +301,18 @@ body{
     80% { transform: translate(0px, 70%)}
     90% { transform: translate(0px, 80%)}
     100% { transform: translate(0px, 95%)}
+  }
+
+  @keyframes startGame {
+    0% { transform: rotate(0deg)}
+    10% { transform: rotate(15deg)}
+    20% { transform: rotate(30deg)}
+    30% { transform: rotate(40deg)}
+    40% { transform: rotate(55deg)}
+    50% { transform: rotate(70deg)}
+    60% { transform: rotate(85deg)}
+    70% { transform: rotate(90deg)}
+    80% { transform: rotate(60deg)}
+    90% { transform: rotate(30deg)}
+    100% { transform: rotate(0deg)}
   }
