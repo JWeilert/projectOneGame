@@ -675,7 +675,16 @@ async function heartOne(diceNumber1, diceNumber2, id1, id2) {
   }
   if (id1 == P1dice1) {
     console.log("test");
-    playerOneHealth += P1heart;
+    if (P1heart >= 4) {
+      let healUp = 5;
+      playerOneHealth += healUp;
+    } else if (P1heart >= 3) {
+      let healUp = 2;
+      playerOneHealth += healUp;
+    } else if (P1heart >= 2) {
+      let healUp = 1;
+      playerOneHealth += healUp;
+    }
   }
 }
 async function heartTwo(diceNumber1, diceNumber2, id1, id2) {
@@ -689,7 +698,16 @@ async function heartTwo(diceNumber1, diceNumber2, id1, id2) {
     heartBeat.play();
   }
   if (id1 == P1dice1) {
-    playerTwoHealth += P2heart;
+    if (P2heart >= 4) {
+      let healUp = 5;
+      playerTwoHealth += healUp;
+    } else if (P2heart >= 3) {
+      let healUp = 2;
+      playerTwoHealth += healUp;
+    } else if (P2heart >= 2) {
+      let healUp = 1;
+      playerTwoHealth += healUp;
+    }
   }
 }
 
@@ -733,6 +751,7 @@ function sleep(time) {
 function restart() {
   if (playerOneHealth <= 0 || playerTwoHealth <= 0) {
     endGame();
+    console.log("test");
   }
   playerOneRolls = 0;
   playerTwoRolls = 0;
@@ -777,18 +796,31 @@ function opacityCheck() {
 }
 
 function endGame() {
-  if (playerOneHealth <= 0 && playerTwoDice <= 0) {
+  console.log("test");
+  if (playerOneHealth <= 0 && playerTwoHealth <= 0) {
     alert("There are no winners in war");
     playerOneHealth = 10;
     playerTwoHealth = 10;
+    playerTwoHealth = 10;
+    health[0].innerHTML = playerOneHealth;
+    playerTwoHealth = 10;
+    health[1].innerHTML = playerOneHealth;
   } else if (playerOneHealth <= 0) {
     alert("Player two wins");
     playerOneHealth = 10;
     playerTwoHealth = 10;
-  } else if (playerTwoHelth <= 0) {
+    playerTwoHealth = 10;
+    health[0].innerHTML = playerOneHealth;
+    playerTwoHealth = 10;
+    health[1].innerHTML = playerOneHealth;
+  } else if (playerTwoHealth <= 0) {
     alert("Player one wins");
     playerOneHealth = 10;
     playerTwoHealth = 10;
+    playerTwoHealth = 10;
+    health[0].innerHTML = playerOneHealth;
+    playerTwoHealth = 10;
+    health[1].innerHTML = playerOneHealth;
   }
 }
 
@@ -797,3 +829,37 @@ bottomUi.style.opacity = 0.5;
 firstHalf.style.opacity = 0.5;
 topUi.style.opacity = 0.5;
 startButton.style.opacity = 1;
+async function preload() {
+  for (let i = 0; i < playerTwoDice.length; i++) {
+    let diceContainer1 = document.getElementById(`P2dice${i + 1}`);
+    diceContainer1.innerHTML = '<img src="/assets/diceArrow.JPG" />';
+    await sleep(20);
+    diceContainer1.innerHTML = '<img src="/assets/diceSword.JPG" />';
+    await sleep(20);
+    diceContainer1.innerHTML = '<img src="/assets/diceShield.JPG" />';
+    await sleep(20);
+    diceContainer1.innerHTML = '<img src="/assets/diceHelmet.JPG" />';
+    await sleep(20);
+    diceContainer1.innerHTML = '<img src="/assets/diceHeart.JPG" />';
+    await sleep(20);
+    diceContainer1.innerHTML = '<img src="/assets/diceDeath.JPG" />';
+    await sleep(20);
+    diceContainer1.innerHTML = "";
+    let diceContainer2 = document.getElementById(`P1dice${i + 1}`);
+    diceContainer2.innerHTML = '<img src="/assets/diceArrow.JPG" />';
+    await sleep(20);
+    diceContainer2.innerHTML = '<img src="/assets/diceSword.JPG" />';
+    await sleep(20);
+    diceContainer2.innerHTML = '<img src="/assets/diceShield.JPG" />';
+    await sleep(20);
+    diceContainer2.innerHTML = '<img src="/assets/diceHelmet.JPG" />';
+    await sleep(20);
+    diceContainer2.innerHTML = '<img src="/assets/diceHeart.JPG" />';
+    await sleep(20);
+    diceContainer2.innerHTML = '<img src="/assets/diceDeath.JPG" />';
+    await sleep(20);
+    diceContainer2.innerHTML = "";
+  }
+}
+
+preload();
