@@ -15,8 +15,8 @@ var started = true;
 var playerOneTurn = false;
 var roundOver = true;
 
-var playerOneHealth = 10;
-var playerTwoHealth = 10;
+var playerOneHealth = 1;
+var playerTwoHealth = 1;
 
 var rollCheck = 0;
 var playerOneRolls = 0;
@@ -92,6 +92,10 @@ const secondHalf = document.getElementById("firstHalf");
 const topUi = document.getElementById("topUi");
 
 const bottomUi = document.getElementById("bottomUi");
+
+const endGameScreen = document.getElementById("endGame");
+
+endGameScreen.style.visibility = "hidden";
 
 // Game Start
 
@@ -174,6 +178,7 @@ rollButtonTop.addEventListener("click", function (event) {
     console.log(diceRolled);
     displayPlayerOne();
     roundOverCheck();
+    opacityCheck();
   } else buttonLock.play();
   buttonLock.currentTime = 0;
 });
@@ -225,6 +230,7 @@ rollButtonBottom.addEventListener("click", function (event) {
     console.log(diceRolled);
     displayPlayerTwo();
     roundOverCheck();
+    opacityCheck();
   } else buttonLock.play();
   buttonLock.currentTime = 0;
 });
@@ -264,6 +270,7 @@ finishButtonTop.addEventListener("click", function (event) {
       }
     }
     buttonPress.play();
+    opacityCheck();
   } else buttonLock.play();
   buttonLock.currentTime = 0;
 });
@@ -279,6 +286,7 @@ finishButtonBottom.addEventListener("click", function (event) {
         opacityCheck();
       }
     }
+    opacityCheck();
     buttonPress.play();
   } else buttonLock.play();
   buttonLock.currentTime = 0;
@@ -423,7 +431,7 @@ async function displayPlayerOne() {
       diceContainer.innerHTML = '<img src="/assets/diceDeath.JPG" />';
     } else diceContainer.innerHTML = "error";
   }
-  await sleep(100);
+  await sleep(200);
   for (let i = 0; i < playerOneDice.length; i++) {
     let diceContainer = document.getElementById(`P1dice${i + 1}`);
     diceContainer.style.visibility = "visible";
@@ -450,7 +458,7 @@ async function displayPlayerTwo() {
       diceContainer.innerHTML = '<img src="/assets/diceDeath.JPG" />';
     } else diceContainer.innerHTML = "error";
   }
-  await sleep(100);
+  await sleep(200);
   for (let i = 0; i < playerTwoDice.length; i++) {
     let diceContainer = document.getElementById(`P2dice${i + 1}`);
     diceContainer.style.visibility = "visible";
@@ -472,10 +480,18 @@ function roundOverCheck() {
 //Adds moving of dice during finish (Looks bad but works)
 async function roundOverDisplay() {
   hornStart.play();
-
+  test();
   healthMath();
+  firstHalf.style.opacity = 1;
+  secondHalf.style.opacity = 1;
+  topUi.style.opacity = 1;
+  bottomUi.style.opacity = 1;
   await sleep(2000);
   for (let i = 0; i < playerOneDice.length; i++) {
+    firstHalf.style.opacity = 1;
+    secondHalf.style.opacity = 1;
+    topUi.style.opacity = 1;
+    bottomUi.style.opacity = 1;
     let id1 = document.getElementById(`P1dice${i + 1}`);
     let id2 = document.getElementById(`P2dice${i + 1}`);
     let diceNumber1 = playerOneDice[i].number;
@@ -496,6 +512,15 @@ async function roundOverDisplay() {
   await sleep(16000);
   console.log("Now");
   restart();
+}
+
+function test() {
+  secondHalf.style.opacity = 1;
+  bottomUi.style.opacity = 1;
+  firstHalf.style.opacity = 1;
+  topUi.style.opacity = 1;
+  console.log(bottomUi.style.opacity);
+  console.log(topUi.style.opacity);
 }
 
 function healthMath() {
@@ -804,10 +829,12 @@ function opacityCheck() {
   }
 }
 
-function endGame() {
-  console.log("test");
+async function endGame() {
+  endGameScreen.style.visibility = "visible";
   if (playerOneHealth <= 0 && playerTwoHealth <= 0) {
-    alert("There are no winners in war");
+    endGameScreen.innerHTML = `<h1>There are no winners in war</h1>`;
+    await sleep(5000);
+    endGameScreen.style.visibility = "hidden";
     playerOneHealth = 10;
     playerTwoHealth = 10;
     playerTwoHealth = 10;
@@ -815,7 +842,9 @@ function endGame() {
     playerTwoHealth = 10;
     health[1].innerHTML = playerOneHealth;
   } else if (playerOneHealth <= 0) {
-    alert("Player two wins");
+    endGameScreen.innerHTML = `<h1>Bottom Player Wins</h1>`;
+    await sleep(5000);
+    endGameScreen.style.visibility = "hidden";
     playerOneHealth = 10;
     playerTwoHealth = 10;
     playerTwoHealth = 10;
@@ -823,7 +852,9 @@ function endGame() {
     playerTwoHealth = 10;
     health[1].innerHTML = playerOneHealth;
   } else if (playerTwoHealth <= 0) {
-    alert("Player one wins");
+    endGameScreen.innerHTML = `<h1>Top Player Wins</h1>`;
+    await sleep(5000);
+    endGameScreen.style.visibility = "hidden";
     playerOneHealth = 10;
     playerTwoHealth = 10;
     playerTwoHealth = 10;
@@ -838,35 +869,3 @@ bottomUi.style.opacity = 0.5;
 firstHalf.style.opacity = 0.5;
 topUi.style.opacity = 0.5;
 startButton.style.opacity = 1;
-async function preload() {
-  for (let i = 0; i < playerTwoDice.length; i++) {
-    let diceContainer1 = document.getElementById(`P2dice${i + 1}`);
-    diceContainer1.innerHTML = '<img src="/assets/diceArrow.JPG" />';
-    await sleep(15);
-    diceContainer1.innerHTML = '<img src="/assets/diceSword.JPG" />';
-    await sleep(15);
-    diceContainer1.innerHTML = '<img src="/assets/diceShield.JPG" />';
-    await sleep(15);
-    diceContainer1.innerHTML = '<img src="/assets/diceHelmet.JPG" />';
-    await sleep(15);
-    diceContainer1.innerHTML = '<img src="/assets/diceHeart.JPG" />';
-    await sleep(15);
-    diceContainer1.innerHTML = '<img src="/assets/diceDeath.JPG" />';
-    await sleep(15);
-    diceContainer1.innerHTML = "";
-    let diceContainer2 = document.getElementById(`P1dice${i + 1}`);
-    diceContainer2.innerHTML = '<img src="/assets/diceArrow.JPG" />';
-    await sleep(15);
-    diceContainer2.innerHTML = '<img src="/assets/diceSword.JPG" />';
-    await sleep(15);
-    diceContainer2.innerHTML = '<img src="/assets/diceShield.JPG" />';
-    await sleep(15);
-    diceContainer2.innerHTML = '<img src="/assets/diceHelmet.JPG" />';
-    await sleep(15);
-    diceContainer2.innerHTML = '<img src="/assets/diceHeart.JPG" />';
-    await sleep(15);
-    diceContainer2.innerHTML = '<img src="/assets/diceDeath.JPG" />';
-    await sleep(15);
-    diceContainer2.innerHTML = "";
-  }
-}
