@@ -1,4 +1,6 @@
 Ready for a game of mixed luck and sratagy?
+I created this game because of my love of board games and stratagy games
+
 Take turns and be the first to take down your opponent in this 1 V 1 dice game!
 
 Gameplay:

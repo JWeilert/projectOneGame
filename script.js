@@ -15,8 +15,8 @@ var started = true;
 var playerOneTurn = false;
 var roundOver = true;
 
-var playerOneHealth = 1;
-var playerTwoHealth = 1;
+var playerOneHealth = 10;
+var playerTwoHealth = 10;
 
 var rollCheck = 0;
 var playerOneRolls = 0;
